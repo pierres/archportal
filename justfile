@@ -178,7 +178,7 @@ deploy:
 	cd app && yarn build
 	cd app && find dist -type f -atime +30 -delete
 	cd app && find dist -type d -empty -delete
-	cd api && composer --no-interaction install --prefer-dist --no-dev --optimize-autoloader
+	cd api && composer --no-interaction install --prefer-dist --no-dev --optimize-autoloader --classmap-authoritative
 	cd api && composer dump-env prod
 	systemctl restart php-fpm@www.service
 	cd api && bin/console doctrine:migrations:sync-metadata-storage --no-interaction
